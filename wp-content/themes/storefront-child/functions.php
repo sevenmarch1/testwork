@@ -17,3 +17,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 \Vnet\Types\TaxCitiesCountries::getInstance()->setup();
 
 \Vnet\Admin::getInstance()->setup();
+
+// Регестрируем виджеты
+\Vnet\WidgetsRegister::getInstance()->setup();
