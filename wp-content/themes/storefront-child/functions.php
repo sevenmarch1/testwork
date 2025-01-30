@@ -13,4 +13,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 // регестрируем типы постов
 \Vnet\Types\TypeCities::getInstance()->setup();
 
+// регестрируем таксономии
+\Vnet\Types\TaxCitiesCountries::getInstance()->setup();
+
 \Vnet\Admin::getInstance()->setup();

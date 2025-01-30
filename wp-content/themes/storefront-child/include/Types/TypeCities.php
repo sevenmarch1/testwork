@@ -3,6 +3,7 @@
 namespace Vnet\Types;
 
 use Vnet\Constants\PostTypes;
+use Vnet\Constants\Taxonomies;
 
 class TypeCities extends PostType
 {
@@ -36,7 +37,8 @@ class TypeCities extends PostType
             'label' => 'Города',
             'has_archive' => false,
             'exclude_from_search' => false,
-            'supports' => ['title']
+            'supports' => ['title'],
+            'taxonomies' => [Taxonomies::CITIES_COUNTRIES]
         ]);
     }
 }
