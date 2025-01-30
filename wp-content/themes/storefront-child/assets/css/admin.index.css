@@ -1,0 +1,72 @@
+.php-error #adminmenuback,
+.php-error #adminmenuwrap {
+    margin-top: 0px !important;
+}
+
+.hidden-input {
+    display: none !important;
+}
+
+/*==============================================================
+*                        ADMIN MENU
+/*============================================================== */
+
+#adminmenu {
+    li.theme-menu-item.awesome-icon {
+        .wp-menu-image:before {
+            font-size: 17px;
+            transition-duration: 0s;
+        }
+        .wp-menu-image img {
+            display: none;
+        }
+    }
+}
+
+#adminmenu {
+    li.theme-menu-item.c-orange > a {
+        background: #9f5200 !important;
+        color: #fff !important;
+        .wp-menu-image:before {
+            color: #fff !important;
+        }
+        &:hover {
+            color: #1d2327 !important;
+            .wp-menu-image:before {
+                color: #1d2327 !important;
+            }
+        }
+    }
+}
+#adminmenu .wp-has-current-submenu.c-orange .wp-submenu .wp-submenu-head,
+#adminmenu .c-orange .wp-menu-arrow,
+#adminmenu .c-orange .wp-menu-arrow div,
+#adminmenu li.current.c-orange a.menu-top,
+#adminmenu li.wp-has-current-submenu.c-orange a.wp-has-current-submenu {
+    background: #7a4300 !important;
+}
+
+#adminmenu {
+    li.theme-menu-item.c-green > a {
+        background: #738030 !important;
+        color: #fff !important;
+        .wp-menu-image:before {
+            color: #fff !important;
+        }
+        &:hover {
+            .wp-menu-name {
+                color: #1d2327 !important;
+            }
+            .wp-menu-image:before {
+                color: #1d2327 !important;
+            }
+        }
+    }
+}
+#adminmenu .wp-has-current-submenu.c-green .wp-submenu .wp-submenu-head,
+#adminmenu .c-green .wp-menu-arrow,
+#adminmenu .c-green .wp-menu-arrow div,
+#adminmenu li.current.c-green a.menu-top,
+#adminmenu li.wp-has-current-submenu.c-green a.wp-has-current-submenu {
+    background: #515f24 !important;
+}
