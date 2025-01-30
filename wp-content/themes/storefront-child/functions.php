@@ -12,3 +12,5 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // регестрируем типы постов
 \Vnet\Types\TypeCities::getInstance()->setup();
+
+\Vnet\Admin::getInstance()->setup();
