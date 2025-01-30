@@ -23,3 +23,4 @@ _DEBUG_.*
 !/wp-content/themes/storefront-child
 
 /wp-content/themes/storefront-child/vendor
+/wp-content/themes/storefront-child/include/site-consts.php

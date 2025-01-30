@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/include/site-consts.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 \Vnet\Loader::getInstance()
@@ -20,3 +21,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Регестрируем виджеты
 \Vnet\WidgetsRegister::getInstance()->setup();
+
+
+// APi погоды 
+Vnet\Api\ApiWeather::getInstance()->setup(
+    ['apiKey' => Vnet\Helpers\Constant::get('API_WEATHER_KEY')]
+);
