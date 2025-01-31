@@ -175,7 +175,6 @@ class Api
             } else {
                 $url .= '?' . $params['params'];
             }
-            // $url .= '?' . http_build_query($params['params'], '', null, PHP_QUERY_RFC3986);
         }
 
         $headers = [];
