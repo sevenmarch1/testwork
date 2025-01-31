@@ -70,43 +70,9 @@ class PostCities extends Post
         if (!empty($search)) {
             $query .= $wpdb->prepare(" AND p.post_title LIKE %s", '%' . $wpdb->esc_like($search) . '%');
         }
-        
+
         $results = $wpdb->get_results($query, ARRAY_A);
 
         return $results;
-    }
-
-
-    /**
-     * - Получает активные города
-     * @return self[]
-     */
-    static function getActive(int $perPage = -1, int $page = 1): array
-    {
-        return Cache::fetch(ConstantsCache::CITIES_ACTIVE . $perPage . $page, function () use ($perPage, $page) {
-            $args = [
-                'posts_per_page' => $perPage,
-                'paged' => $page,
-            ];
-
-            return parent::getPublished($args);
-        });
-    }
-
-    /**
-     * - Получает активные города количество
-     * @return int
-     */
-    static function getActiveTotal(int $perPage = -1): int
-    {
-        $total =  Cache::fetch(ConstantsCache::CITIES_ACTIVE . $perPage, function () use ($perPage) {
-            $args = [
-                'posts_per_page' => $perPage,
-            ];
-
-            return parent::getPublished($args);
-        });
-
-        return count($total);
     }
 }

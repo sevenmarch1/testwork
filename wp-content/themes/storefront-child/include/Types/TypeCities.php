@@ -37,6 +37,7 @@ class TypeCities extends PostType
             'label' => 'Города',
             'has_archive' => false,
             'exclude_from_search' => false,
+            'publicly_queryable' => false,
             'supports' => ['title'],
             'taxonomies' => [Taxonomies::CITIES_COUNTRIES]
         ]);
