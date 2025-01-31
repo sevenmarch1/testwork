@@ -2,6 +2,7 @@
 
 namespace Vnet\Entities;
 
+use Vnet\Api\ApiWeather;
 use Vnet\Cache;
 use Vnet\Constants\Cache as ConstantsCache;
 use Vnet\Constants\PostTypes;
@@ -11,6 +12,41 @@ class PostCities extends Post
 
     protected static $postType = PostTypes::CITIES;
 
+
+    /**
+     * - Получает ширину
+     * @return string
+     */
+    function getLat(): string
+    {
+        return (string)$this->getMeta('_latitude', true);
+    }
+
+
+    /**
+     * - Получает долготу
+     * @return string
+     */
+    function getLon(): string
+    {
+        return (string)$this->getMeta('_longitude', true);
+    }
+
+
+   /**
+     * - Получает температуру
+     * @return null|string
+     */
+    function getTemperature() 
+    {
+        $temp = ApiWeather::getInstance()->getCitiesWeather($this->getId(), $this->getLat(), $this->getLon());
+
+        if($temp){
+            return $temp;
+        }
+
+        return null;
+    }
 
 
     /**

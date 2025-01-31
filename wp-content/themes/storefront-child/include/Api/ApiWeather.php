@@ -70,7 +70,7 @@ class ApiWeather extends Api
      * @param string $lon - долгота
      * @return null|string
      */
-    public function getCitiesWeather(int $cityId, string $lat, string $lon) : string
+    public function getCitiesWeather(int $cityId, string $lat, string $lon) 
     {
         if (!$lat || !$lon) {
             return null;
