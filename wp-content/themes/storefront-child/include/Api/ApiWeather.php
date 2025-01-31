@@ -15,7 +15,7 @@ class ApiWeather extends Api
     //единицы измерения
     private $apiUnits = 'metric';
 
-    private $cacheKey = 'weather_data_cache'; 
+    private $cacheKey = '_city_temperature'; 
 
     function setup($params = [])
     {
@@ -93,12 +93,12 @@ class ApiWeather extends Api
 
         $temp = $response['main']['temp'];
 
-        $cachedData[$cityId] = [
+        $cachedData = [
             'temp' => $temp,
             'timestamp'   => time()
         ];
     
-        update_option($this->cacheKey, $cachedData);
+        update_post_meta($cityId, $this->cacheKey, $cachedData);
 
         return $temp;
     }
@@ -109,10 +109,10 @@ class ApiWeather extends Api
      */
     public function getCachedWeatherData($cityId) {
 
-        $cachedData = get_option($this->cacheKey, []); 
+        $cachedData = get_post_meta($cityId, $this->cacheKey, true); 
 
-        if (isset($cachedData[$cityId]) && (time() - $cachedData[$cityId]['timestamp'] < 3600)) {
-            return $cachedData[$cityId]['temp'];
+        if (isset($cachedData) && (time() - $cachedData['timestamp'] < 3600)) {
+            return $cachedData['temp'];
         }
 
         return null;
