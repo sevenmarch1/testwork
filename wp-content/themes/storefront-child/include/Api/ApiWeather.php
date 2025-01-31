@@ -111,7 +111,7 @@ class ApiWeather extends Api
 
         $cachedData = get_post_meta($cityId, $this->cacheKey, true); 
 
-        if (isset($cachedData) && (time() - $cachedData['timestamp'] < 3600)) {
+        if ($cachedData && (time() - $cachedData['timestamp'] < 3600)) {
             return $cachedData['temp'];
         }
 

@@ -26,11 +26,15 @@ $data = PostCities::getWeatherData();
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data as $row) { ?>
+            <?php foreach ($data as $row) { 
+
+                $city = PostCities::getById($row['ID']);
+                $temp = $city->getTemperature();
+                ?>
                 <tr>
                     <td><?= esc_html($row['city']); ?></td>
                     <td><?= esc_html($row['country'] ?: 'Не указано'); ?></td>
-                    <td>Нет данных</td>
+                    <td><?= $temp ? 'Температура: ' . $temp . ' °C' : 'Не удалось получить данные о погоде.'; ?></td>
                 </tr>
             <?php } ?>
         </tbody>
