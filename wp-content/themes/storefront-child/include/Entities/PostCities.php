@@ -6,6 +6,7 @@ use Vnet\Api\ApiWeather;
 use Vnet\Cache;
 use Vnet\Constants\Cache as ConstantsCache;
 use Vnet\Constants\PostTypes;
+use Vnet\Constants\Taxonomies;
 
 class PostCities extends Post
 {
@@ -33,19 +34,42 @@ class PostCities extends Post
     }
 
 
-   /**
+    /**
      * - Получает температуру
      * @return null|string
      */
-    function getTemperature() 
+    function getTemperature()
     {
         $temp = ApiWeather::getInstance()->getCitiesWeather($this->getId(), $this->getLat(), $this->getLon());
 
-        if($temp){
+        if ($temp) {
             return $temp;
         }
 
         return null;
+    }
+
+
+    //получает данные городов
+    static function getWeatherData($search = '')
+    {
+        global $wpdb;
+
+        $tax = Taxonomies::CITIES_COUNTRIES;
+
+        $query = "SELECT 
+                p.ID,
+                p.post_title AS city,
+                t.name AS country
+              FROM {$wpdb->prefix}posts AS p
+              LEFT JOIN {$wpdb->prefix}term_relationships AS tr ON p.ID = tr.object_id
+              LEFT JOIN {$wpdb->prefix}term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+              LEFT JOIN {$wpdb->prefix}terms AS t ON tt.term_id = t.term_id
+              WHERE p.post_type = 'cities' AND p.post_status = 'publish' AND (tt.taxonomy = '{$tax}' OR tt.taxonomy IS NULL)";
+
+        $results = $wpdb->get_results($query, ARRAY_A);
+
+        return $results;
     }
 
 
