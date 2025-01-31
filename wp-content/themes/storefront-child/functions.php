@@ -9,6 +9,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
     ->addAdminStyle('admin-index', THEME_URI . 'assets/css/admin.index.css')
 
+    ->addFrontScript('theme-index', THEME_URI . 'assets/js/index.js')
+
     ->setup();
 
 // регестрируем типы постов

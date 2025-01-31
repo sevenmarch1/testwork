@@ -66,7 +66,11 @@ class PostCities extends Post
               LEFT JOIN {$wpdb->prefix}term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
               LEFT JOIN {$wpdb->prefix}terms AS t ON tt.term_id = t.term_id
               WHERE p.post_type = 'cities' AND p.post_status = 'publish' AND (tt.taxonomy = '{$tax}' OR tt.taxonomy IS NULL)";
-
+        
+        if (!empty($search)) {
+            $query .= $wpdb->prepare(" AND p.post_title LIKE %s", '%' . $wpdb->esc_like($search) . '%');
+        }
+        
         $results = $wpdb->get_results($query, ARRAY_A);
 
         return $results;
